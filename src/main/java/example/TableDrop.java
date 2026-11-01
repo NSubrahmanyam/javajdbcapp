@@ -1,4 +1,4 @@
-package com.dxc.java.jdbc.ddl.statement;
+package example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
