@@ -26,6 +26,8 @@ public class TableDrop {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        String sql= "SELECT customer_id, NVL(customer_name,'UNKNOWN') FROM Customer WHERE customer_id=?";
 
     }
 }
