@@ -23,9 +23,10 @@ public class CustomerDao {
 	 * @return
 	 * @throws SQLException
 	 */
+	// PostgreSQL : SELECT UPPER('hello')
 	public String captilizeCustomerName(Connection connection, String customerName) throws SQLException {
 		String upperCustomerName = "";
-		String sql1 = "SELECT UPPER('hello') FROM dual"; // PostgreSQL : SELECT UPPER('hello')
+		String sql1 = "SELECT UPPER('hello') FROM dual"; 
 
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
@@ -39,8 +40,9 @@ public class CustomerDao {
 	 * @param connection
 	 * @throws SQLException
 	 */
+	// PostgreSQL : SELECT SUBSTRING('DATABASE', 1, 4) 
 	public void getSubString(Connection connection) throws SQLException {
-		String sql1 = "SELECT SUBSTR('DATABASE', 1, 4) FROM dual"; // PostgreSQL : SELECT SUBSTRING('DATABASE', 1, 4) 
+		String sql1 = "SELECT SUBSTR('DATABASE', 1, 4) FROM dual"; 
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
 	}
@@ -50,8 +52,9 @@ public class CustomerDao {
 	 * @param connection
 	 * @throws SQLException
 	 */
+	// SELECT CURRENT_TIMESTAMP -- PostgreSQL
 	public void getCurrentDate(Connection connection) throws SQLException {
-		String sql1 = "SELECT SYSDATE FROM dual"; // SELECT CURRENT_TIMESTAMP -- PostgreSQL
+		String sql1 = "SELECT SYSDATE FROM dual"; 
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
 	}
@@ -61,43 +64,48 @@ public class CustomerDao {
 	 * @param connection
 	 * @throws SQLException
 	 */
+	//  Oracle:  SELECT ADD_MONTHS(SYSDATE, 2) FROM dual;
+	//  PostgreSQL:  SELECT CURRENT_DATE + INTERVAL '2 months';
 	public void addMonthsToCurrentDate(Connection connection,Integer noOfMonths) throws SQLException {
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT ADD_MONTHS(SYSDATE,");
 		query.append(noOfMonths);
 		query.append(" )");
-		query.append("FROM dual"); // Oracle:  SELECT ADD_MONTHS(SYSDATE, 2) FROM dual;
-								  //  PostgreSQL:  SELECT CURRENT_DATE + INTERVAL '2 months';
+		query.append("FROM dual"); 
 		Statement statement = connection.createStatement();
 		statement.execute(query.toString());
 	}
-	
-	public void isEmailAvailable(Connection connection) throws SQLException {
-		String sql1 = "SELECT NVL2(email, 'Available', 'Not Available')  FROM employees";
-		/**
-		 * -- PostgreSQL
+	//PostgreSQL:
+	/**
+	 * -- PostgreSQL
 		SELECT
 	    CASE
 	        WHEN email IS NOT NULL THEN 'Available'
 	        ELSE 'Not Available'
 	    END
 		FROM employees;
-		 */
+	 */
+	
+	public void isEmailAvailable(Connection connection) throws SQLException {
+		String sql1 = "SELECT NVL2(email, 'Available', 'Not Available')  FROM employees";
+		
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
 	}
 	
 	//Type conversion functions
 	//String to number
+	//PostgreSQL: SELECT CAST('5000' AS INTEGER);  
 	public void convertToNumber(Connection connection) throws SQLException {
-		String sql1 = "SELECT TO_NUMBER('5000') FROM dual"; //PostgreSQL: SELECT CAST('5000' AS INTEGER);  
+		String sql1 = "SELECT TO_NUMBER('5000') FROM dual"; 
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
 	}
 	
 	//Convert date into string
+	//PostgreSQL: SELECT TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY'); 
 	public void convertDateToString(Connection connection) throws SQLException {
-		String sql1 = "SELECT TO_CHAR(SYSDATE, 'DD-MM-YYYY') FROM dual"; //PostgreSQL: SELECT TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY'); 
+		String sql1 = "SELECT TO_CHAR(SYSDATE, 'DD-MM-YYYY') FROM dual"; 
 		Statement statement = connection.createStatement();
 		statement.execute(sql1);
 	}
