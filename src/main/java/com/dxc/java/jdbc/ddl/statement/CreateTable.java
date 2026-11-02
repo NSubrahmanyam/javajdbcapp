@@ -1,4 +1,4 @@
-package example;
+package com.dxc.java.jdbc.ddl.statement;
 
 import java.sql.*;
 
