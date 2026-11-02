@@ -10,7 +10,7 @@ public class CustomerDao {
 	// String functions
 	public PreparedStatement findCustomer(Connection connection, long id) throws SQLException {
 
-		String sql = "SELECT customer_id, COALESCE(customer_desc, 'UNKNOWN') FROM customer WHERE customer_id = ?";
+		String sql = "SELECT customer_id, NVL(customer_desc, 'UNKNOWN') FROM customer WHERE customer_id = ?";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ps.setLong(1, id);
 		return ps;
